@@ -22,11 +22,11 @@ def to_binary(n):
     else:
         to_binary(n // 2) + str(n % 2)
 
-        return to_binary(n // 2) + str(n % 2)
+        # return to_binary(n // 2) + str(n % 2)
 
 def task1():
     """ Load the dataset and return the number of missing values in each column, sorted in descending order. """
-    return df.isnull().sum().sort_values(ascending=False)
+    return df.isna().sum().sort_values()
     
 
 def task2():
@@ -37,10 +37,10 @@ def task2():
 def task3():
     """ Return a DataFrame with the average age of patients grouped by """
 
-    return df.groupby('gender')['age'].agg(['mean'])
+    return df.groupby('gender')['age'].mean()
     print('Some cleaning had to be done, including removing rows with different genders and converting ages to numeric values.')
 
 
 def task4():
     """ Return a Series with the top 5 most common professions among patients. """
-    return df['profession'].value_counts()[:5]
+    return df['profession'].value_counts()[:5].index.tolist()
